@@ -1,27 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ajay M - Student Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f4f4f9;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: cover;
+      border: 2px solid #6200ea;
+    }
+    h1 {
+      color: #6200ea;
+      margin: 0;
+    }
+    section {
+      margin-bottom: 15px;
+    }
+    h2 {
+      color: #333;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+    p {
+      margin: 5px 0;
+      padding: 10px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    input[type="text"], input[type="email"], input[type="tel"] {
+      width: 95%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #6200ea;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover {
+      background-color: #3700b3;
+    }
+    .warning {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>My Resume</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="biodata.html">Biodata</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>Professional Experience</h2>
-        <p>Details about my work experience...</p>
+  <div class="header-container">
+    <img src="images/ajay.jpg" alt="Ajay's Picture" class="profile-pic" />
+    <h1>Ajay M</h1>
+  </div>
+  <section>
+    <h2>About Me</h2>
+    <p>I am a 4th semester Computer Science Engineering student at RNS Institute of Technology (RNSIT), passionate about programming and software development.</p>
+  </section>
+  <section>
+    <h2>Education</h2>
+    <p>Bachelor of Technology in Computer Science Engineering</p>
+    <p>RNS Institute of Technology (RNSIT)</p>
+    <p>Expected Graduation: 2027</p>
+  </section>
+  <section>
+    <h2>Skills & Interests</h2>
+    <p>Programming Languages: C, C++, Java, Python</p>
+    <p>Web Development: HTML, CSS, JavaScript</p>
+    <p>Interests: Data Structures, Algorithms, Machine Learning, Artificial Intelligence</p>
+  </section>
+  <section>
+    <h2>Projects</h2>
+    <p><strong>Library Management System</strong> - Developed a console-based application in C++ to manage book inventory and user transactions.</p>
+    <p><strong>Personal Portfolio Website</strong> - Created a responsive website using HTML, CSS, and JavaScript to showcase my projects and skills.</p>
+  </section>
+  <section>
+    <h2>Extracurricular Activities</h2>
+    <p>Member of the Coding Club at RNSIT, participating in hackathons and coding competitions.</p>
+    <p>Volunteer at local community tech workshops teaching basic programming skills.</p>
+  </section>
 
-        <h2>Education</h2>
-        <p>Details about my education...</p>
-    </main>
+  <section>
+    <h2>Contact Form</h2>
+    <form id="contactForm" onsubmit="return validateForm()">
+      <table>
+        <tr>
+          <th><label for="name">Name</label></th>
+          <td>
+            <input type="text" id="name" name="name" required />
+          </td>
+        </tr>
+        <tr>
+          <th><label for="gmail">Gmail</label></th>
+          <td>
+            <input type="email" id="gmail" name="gmail" required />
+            <div id="gmailWarning" class="warning">Gmail must end with @gmail.com</div>
+          </td>
+        </tr>
+        <tr>
+          <th><label for="phone">Phone No</label></th>
+          <td>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" />
+            <div id="phoneWarning" class="warning">Phone number must be exactly 10 digits</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align:center;">
+            <button type="submit">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </section>
+
+  <script>
+    function validateForm() {
+      const gmailInput = document.getElementById('gmail');
+      const phoneInput = document.getElementById('phone');
+      const gmailWarning = document.getElementById('gmailWarning');
+      const phoneWarning = document.getElementById('phoneWarning');
+
+      let valid = true;
+
+      if (!gmailInput.value.endsWith('@gmail.com')) {
+        gmailWarning.style.display = 'block';
+        valid = false;
+      } else {
+        gmailWarning.style.display = 'none';
+      }
+
+      const phoneValue = phoneInput.value;
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(phoneValue)) {
+        phoneWarning.style.display = 'block';
+        valid = false;
+      } else {
+        phoneWarning.style.display = 'none';
+      }
+
+      return valid;
+    }
+  </script>
 </body>
 </html>
